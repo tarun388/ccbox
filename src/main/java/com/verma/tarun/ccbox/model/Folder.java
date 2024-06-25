@@ -12,9 +12,21 @@ import lombok.Setter;
 public class Folder {
     
     @Id
-    private Long id;
+    private String id;
 
     private String name;
     private List<Folder> childFolders;
     private List<File> childFiles;
+
+    private Folder() {};
+
+    public Folder(String name) {
+        this.name = name;
+    }
+
+    public Folder(String name, List<Folder> folders, List<File> files) {
+        this.name = name;
+        this.childFolders = folders;
+        this.childFiles = files;
+    }
 }
