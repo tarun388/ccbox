@@ -32,3 +32,7 @@ build/
 ### VS Code ###
 .vscode/
 .DS_Store
+src/main/resources/my-public-key
+src/main/resources/my-public-key-rsa.pem
+src/main/resources/my-public-key.pub
+src/main/resources/x509_public_key.pem
