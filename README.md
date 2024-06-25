@@ -12,7 +12,7 @@ To close
 
 > docker compose down
 
-## Create RSA public key in PEM format to sign authtokens
+## Create public key in PEM format to sign authtokens
 
 > cd src/main/resources
 
