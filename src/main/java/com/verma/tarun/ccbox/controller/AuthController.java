@@ -1,5 +1,8 @@
 package com.verma.tarun.ccbox.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.verma.tarun.ccbox.model.User;
 import com.verma.tarun.ccbox.repository.UserRepository;
+import com.verma.tarun.ccbox.security.JwtUtil;
 
 
 @RestController
@@ -21,6 +25,9 @@ public class AuthController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private JwtUtil jwtUtil;
 
     @PostMapping("/signup")
     public ResponseEntity<String> signup(@RequestParam String name, @RequestParam String password) {
@@ -44,7 +51,10 @@ public class AuthController {
             log.info("User {} not auth {}", name, password);
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok("Login successful");
+        String token = jwtUtil.generateToken(name);
+        Map<String, String> responseBody = new HashMap<>();
+        responseBody.put("token", token);
+        return ResponseEntity.ok(responseBody);
     }
     
 }
